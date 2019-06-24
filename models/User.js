@@ -10,6 +10,12 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  userName: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+  },
   password: {
     type: String,
     required: true,
@@ -38,8 +44,8 @@ UserSchema.pre('save', function (next) {
 });
 
 
-UserSchema.statics.authenticate = function (email, password, cb) {
-  this.findOne({ email }, (err, user) => {
+UserSchema.statics.authenticate = function (userName, password, cb) {
+  this.findOne({ userName }, (err, user) => {
     if (err) {
       return cb(500);
     }
