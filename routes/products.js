@@ -12,7 +12,7 @@ module.exports = (app, next) => {
 
     Product.find({}, (err, products)=> {
       console.log("hola")
-      if(err) return resp.status(400).send(err):
+      if(err) return resp.status(400).send(err);
       resp.status(200).send(products)
     })
   });
