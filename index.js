@@ -12,13 +12,19 @@ const app = express();
 
 
 // Conectar aplicación a MongoDB
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
+  if(err){
+    return err
+  }
+  console.log('Conectado a Mongo');
+});
+mongoose.set('useFindAndModify', false);
 
 
 app.set('config', config);
 app.set('pkg', pkg);
 
-
+app.use(express.urlencoded({estended: true}));
 app.use(express.json());
 app.use(authMiddleware(secret));
 
