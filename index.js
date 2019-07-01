@@ -18,13 +18,13 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true }, (err
   }
   console.log('Conectado a Mongo');
 });
-mongoose.set('useFindAndModify', false);
+//mongoose.set('useFindAndModify', false);
 
 
 app.set('config', config);
 app.set('pkg', pkg);
 
-app.use(express.urlencoded({estended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(authMiddleware(secret));
 
